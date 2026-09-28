@@ -1,0 +1,48 @@
+import time
+
+
+def bfs(graph, start):
+    visited = [False] * len(graph)
+    queue = []
+
+    visited[start] = True
+    queue.append(start)
+
+    while queue:
+        node = queue.pop(0)
+        print(node, end=" ")
+
+        for neighbor in graph[node]:
+            if not visited[neighbor]:
+                visited[neighbor] = True
+                queue.append(neighbor)
+
+
+
+graph = {
+    0: [1, 2],
+    1: [0, 3, 4],
+    2: [0],
+    3: [1],
+    4: [1]
+}
+
+
+start = 0
+
+
+start_time = time.perf_counter()
+
+print("BFS Traversal:")
+bfs(graph, start)
+
+
+end_time = time.perf_counter()
+
+execution_time = end_time - start_time
+
+print("\n\nExecution Time:", execution_time, "seconds")
+
+
+print("Time Complexity: O(V + E)")
+print("Space Complexity: O(V)")

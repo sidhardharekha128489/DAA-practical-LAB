@@ -1,0 +1,44 @@
+import time
+
+# DFS Function
+def dfs(graph, node, visited):
+    visited[node] = True
+    print(node, end=" ")
+
+    for neighbor in graph[node]:
+        if not visited[neighbor]:
+            dfs(graph, neighbor, visited)
+
+
+# Graph
+graph = {
+    0: [1, 2],
+    1: [0, 3, 4],
+    2: [0],
+    3: [1],
+    4: [1]
+}
+
+# Visited array
+visited = [False] * len(graph)
+
+# Starting vertex
+start = 0
+
+# Start execution time
+start_time = time.perf_counter()
+
+print("DFS Traversal:")
+dfs(graph, start, visited)
+
+# End execution time
+end_time = time.perf_counter()
+
+# Execution time
+execution_time = end_time - start_time
+
+print("\n\nExecution Time:", execution_time, "seconds")
+
+# Complexity
+print("Time Complexity: O(V + E)")
+print("Space Complexity: O(V)")
